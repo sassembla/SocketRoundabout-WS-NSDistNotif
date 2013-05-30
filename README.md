@@ -7,21 +7,21 @@ Connect WS/HTTP/NSDistributedNotification/BT.
 
 ### From Input to Output through connection
 
-#####connect
+####connect
 connect the connections & ransfer the message.(string only)
 
 * Input WebSocketClient -> (message:String) -> Output to NSDistNotification 
 * Input WebSocketServer -> (message:String) -> Output to Other-WebSocketServer 
 
 
-#####split
+####split
 split the connection's output to multi connections.
 
 * Input WebSocketClient -> (message:String)  
 	-> Output to Other-WebSocketServer_1  
 	-> Output to Other-WebSocketServer_2
 
-#####join
+####join
 Join some connection's outputs in one output.
 
 * Input  
@@ -29,7 +29,7 @@ Join some connection's outputs in one output.
 	WebSocketClient_2 -> (message:String)  
 	-> Output to Other-WebSocketServer  
 	
-#####routing
+####routing
 When A received input from B, then output to C.
 
 * Input A -> Output to B -> Input to A -> Output to C  
@@ -49,7 +49,7 @@ When A received input from B, then output to C.
 
 * trans message.  
 	(WSServer@ws://127.0.0.1:SOMEPORT) ->  
-	WSClietn@ws://127.0.0.1:SOMEPORT -> 
+	WSClient@ws://127.0.0.1:SOMEPORT -> 
 	DISTNOTIFICATION_IDENTITY
 * commentable //
 * sequential & wait for connect.
@@ -59,14 +59,21 @@ When A received input from B, then output to C.
 Add the "prefix" & "suffix" When the data through connections.
 
 	//transfer
-	trans:MyWebSocketConnection to:MyWebSocketConnection prefix:TEST_PREFIX suffix:TEST_POSTFIX
+	trans:MyWebSocketConnection to:MyWebSocketConnection prefix:TEST_PREFIX suffix:TEST_SUFFIX
 
 will change the message through the connection.
 
+### Emit message
+Run specific message to connection.
 
-### Visualize
-not yet.
+	//emit
+	emit:HelloWorld to:MyWebSocketConnection
+	
+Emit from file
 
+	//emitFile
+	emitfile:/Users/sassembla/Desktop/SocketRoundabout/HelloWorld.txt to:rMyWebSocketConnection
+	
 
 ###Limitation
 Use one *.sr per one SocketRocket App. 
